@@ -1,0 +1,156 @@
+meta {
+  name: TopazioPayout
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{remitec.backoffice.baseurl}}/api/webhooks/topazio/payouts
+  body: json
+  auth: apikey
+}
+
+auth:apikey {
+  key: api-key
+  value: {{remitec.topazio.token}}
+  placement: header
+}
+
+body:json {
+  {
+    "message": "Transactions status",
+    "return": [
+      {
+        "transactionNumber": "177932",
+        "listStatus": [
+          {
+            "status": "CANCELLED",
+            "processed": "2026-01-29 09:30:10",
+            "reason": "Shipment Canceled",
+            "reasonCode": 5
+          }
+        ]
+      }
+    ]
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: success
+  
+  request: {
+    url: {{remitec.backoffice.baseurl}}/api/webhooks/topazio/payouts
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "message": "Transactions status",
+        "return": [
+          {
+            "transactionNumber": "177932",
+            "listStatus": [
+              {
+                "status": "CANCELLED",
+                "processed": "2026-01-29 09:30:10",
+                "reason": "Shipment Canceled",
+                "reasonCode": 5
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      content-type: application/json; charset=utf-8
+      server: Microsoft-IIS/10.0
+      x-authenticated: False
+      x-sourcefiles: =?UTF-8?B?Qzpcd29ya3NwYWNlXHJlbWl0dGFuY2Utc2xuXEZYQ09NQmFja29mZmljZS5XZWJBcHBcYXBpXHdlYmhvb2tzXHRvcGF6aW9ccGF5b3V0cw==?=
+      x-powered-by: ASP.NET
+      x-frame-options: SAMEORIGIN
+      date: Sun, 01 Feb 2026 20:24:47 GMT
+      content-length: 144
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {
+            "transactionNumber": "177932",
+            "message": "[TOPAZIO Webhook] Order 177932 not pending (order status: Dispatch / integration status: Canceled)."
+          }
+        ]
+      '''
+    }
+  }
+}
+
+example {
+  name: error
+  
+  request: {
+    url: {{remitec.backoffice.baseurl}}/api/webhooks/topazio/payouts
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "message": "Transactions status",
+        "return": [
+          {
+            "transactionNumber": "177932",
+            "listStatus": [
+              {
+                "status": "CANCELLED",
+                "processed": "2026-01-29 09:30:10",
+                "reason": "Shipment Canceled",
+                "reasonCode": 5
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      content-type: application/json; charset=utf-8
+      server: Microsoft-IIS/10.0
+      x-authenticated: False
+      x-sourcefiles: =?UTF-8?B?Qzpcd29ya3NwYWNlXHJlbWl0dGFuY2Utc2xuXEZYQ09NQmFja29mZmljZS5XZWJBcHBcYXBpXHdlYmhvb2tzXHRvcGF6aW9ccGF5b3V0cw==?=
+      x-powered-by: ASP.NET
+      x-frame-options: SAMEORIGIN
+      date: Sun, 01 Feb 2026 20:26:45 GMT
+      content-length: 67
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {
+            "message": "Payload empty or null (no transactions to process)."
+          }
+        ]
+      '''
+    }
+  }
+}

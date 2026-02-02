@@ -1,18 +1,14 @@
-# --- Bruno ---
-.bruno/
+# --- Bruno internal state ---
 **/.bruno/
 
-# --- Secrets / credentials ---
+# --- Bruno environments (may contain secrets) ---
+**/environments/*[Pp][Rr][Oo][Dd]*.bru
+**/environments/*[Pp][Rr][Dd]*.bru
+
+# --- Certificates / credentials ---
 **/*.pem
 **/*.key
 **/*.pfx
-**/*.cer
-**/*.crt
-
-# --- Local environments (never commit prod secrets) ---
-**/*prod*.bru
-**/*secrets*.bru
-**/*local*.bru
 
 # --- OS ---
 .DS_Store

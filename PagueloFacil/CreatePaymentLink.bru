@@ -24,25 +24,42 @@ body:form-urlencoded {
 }
 
 vars:pre-request {
-  return_url: https://developers.paguelofacil.com/guias/enlace-de-pago
+  return_url: https://eo5ybs7ygsmorn7.m.pipedream.net
   web_code: A78CA31B97BA8DD5EC433628792BDBAD4841C4455E15611E860CDCBF6DB0AB9D3451D2CEDB4BC1A5F9AC2DBF34F87ED914591B4E2CCF914614289951769C08D7
+}
+
+vars:post-response {
+  create_payment_link_cod_oper: res.body.data.code
 }
 
 script:pre-request {
   function toHex(str) {
-    if (typeof str !== "string" || !str.length) {
-      throw new Error("return_url is missing");
-    }
     return Buffer.from(str, "utf8").toString("hex");
   }
   
-  
   const returnUrl = bru.getRequestVar("return_url");
   bru.setVar("RETURN_URL", toHex(returnUrl));
-  
 }
 
 settings {
   encodeUrl: true
   timeout: 0
+}
+
+docs {
+  {
+    "PARM_1": "123456",
+    "TotalPagado": "0",
+    "Fecha": "01/02/2026",
+    "Hora": "21:19:59",
+    "Tipo": "VISA",
+    "Oper": "LK-8WB4QU3SS8YV",
+    "Usuario": "Leo More",
+    "Email": "lmorelato@gmail.com.uk",
+    "Estado": "Denegada",
+    "Razon": "Issuer is rejecting authentication and requesting that authorization not be attempted",
+    "CMTN": "100.0",
+    "CDSC": "Money Tranfer Order",
+    "CCLW": "A78CA31B97BA8DD5EC433628792BDBAD4841C4455E15611E860CDCBF6DB0AB9D3451D2CEDB4BC1A5F9AC2DBF34F87ED914591B4E2CCF914614289951769C08D7"
+  }
 }

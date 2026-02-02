@@ -5,19 +5,34 @@ meta {
 }
 
 get {
-  url: https://sandbox.paguelofacil.com/PFManagementServices/api/v1/MerchantTransactions?filter=codOper::LK-HJ74YHEGQZMITKEQ
+  url: https://sandbox.paguelofacil.com/PFManagementServices/api/v1/MerchantTransactions?filter=codOper::{{cod_oper}}
   body: none
   auth: apikey
 }
 
 params:query {
-  filter: codOper::LK-HJ74YHEGQZMITKEQ
+  filter: codOper::{{cod_oper}}
 }
 
 auth:apikey {
   key: Authorization
-  value: brEyQRSzMm2UwQa5v0NsobRa3U8nH5xT|DIRmaQnFsYpouGcwafqStQ63E
+  value: {{api_key}}
   placement: header
+}
+
+vars:pre-request {
+  cod_oper: LK-H4QU6F61NEWXKNP7
+}
+
+script:pre-request {
+  const useFixed = true;  
+  const fixed = bru.getRequestVar("cod_oper"); 
+  const fromA = bru.getVar("create_payment_link_cod_oper"); 
+  const chosen = useFixed ? fixed : fromA;
+  
+  bru.setVar("cod_oper", chosen);
+  console.log("cod_oper:", chosen);
+  
 }
 
 settings {

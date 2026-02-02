@@ -1,0 +1,48 @@
+meta {
+  name: CreatePaymentLink
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://sandbox.paguelofacil.com/LinkDeamon.cfm
+  body: formUrlEncoded
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/x-www-form-urlencoded
+  Accept: */*
+}
+
+body:form-urlencoded {
+  CCLW: {{web_code}}
+  CMTN: 100.00
+  CDSC: Money Tranfer Order
+  RETURN_URL: {{RETURN_URL}}
+  PARM_1: 123456
+}
+
+vars:pre-request {
+  return_url: https://developers.paguelofacil.com/guias/enlace-de-pago
+  web_code: A78CA31B97BA8DD5EC433628792BDBAD4841C4455E15611E860CDCBF6DB0AB9D3451D2CEDB4BC1A5F9AC2DBF34F87ED914591B4E2CCF914614289951769C08D7
+}
+
+script:pre-request {
+  function toHex(str) {
+    if (typeof str !== "string" || !str.length) {
+      throw new Error("return_url is missing");
+    }
+    return Buffer.from(str, "utf8").toString("hex");
+  }
+  
+  
+  const returnUrl = bru.getRequestVar("return_url");
+  bru.setVar("RETURN_URL", toHex(returnUrl));
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

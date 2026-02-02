@@ -1,0 +1,26 @@
+meta {
+  name: GetTransaction
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://sandbox.paguelofacil.com/PFManagementServices/api/v1/MerchantTransactions?filter=codOper::LK-HJ74YHEGQZMITKEQ
+  body: none
+  auth: apikey
+}
+
+params:query {
+  filter: codOper::LK-HJ74YHEGQZMITKEQ
+}
+
+auth:apikey {
+  key: Authorization
+  value: brEyQRSzMm2UwQa5v0NsobRa3U8nH5xT|DIRmaQnFsYpouGcwafqStQ63E
+  placement: header
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

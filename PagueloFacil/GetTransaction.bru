@@ -14,6 +14,10 @@ params:query {
   filter: codOper::{{cod_oper}}
 }
 
+headers {
+  Accept: */*
+}
+
 auth:apikey {
   key: Authorization
   value: {{api_key}}
@@ -21,7 +25,7 @@ auth:apikey {
 }
 
 vars:pre-request {
-  cod_oper: LK-H4QU6F61NEWXKNP7
+  cod_oper: LK-KNJ0A2K9BWZC
 }
 
 script:pre-request {
@@ -38,4 +42,269 @@ script:pre-request {
 settings {
   encodeUrl: true
   timeout: 0
+}
+
+example {
+  name: success
+  
+  request: {
+    url: https://sandbox.paguelofacil.com/PFManagementServices/api/v1/MerchantTransactions?filter=codOper::{{cod_oper}}
+    method: GET
+    mode: none
+    params:query: {
+      filter: codOper::{{cod_oper}}
+    }
+  
+    headers: {
+      Accept: */*
+    }
+  }
+  
+  response: {
+    headers: {
+      date: Wed, 04 Feb 2026 02:30:09 GMT
+      content-type: application/json;charset=utf-8
+      transfer-encoding: chunked
+      connection: keep-alive
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
+      cache-control: no-cache, no-store, max-age=0, must-revalidate
+      pragma: no-cache
+      expires: 0
+      strict-transport-security: max-age=31536000 ; includeSubDomains
+      x-frame-options: DENY, DENY
+      server: pf-server
+      x-pf-header: true
+      access-control-allow-origin: *
+      x-pf-env: SANDBOX
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "headerStatus": {
+            "code": 200,
+            "description": "Success"
+          },
+          "serverTime": "2026-02-03T21:30:09",
+          "message": null,
+          "requestId": "f09dde33-c89f-459b-92d9-fe2a23466236",
+          "data": [
+            {
+              "idTransaction": 693132,
+              "merchantName": "Demo Juridico (NICOLAS GIORDANO)",
+              "email": "lmorelato@gmail.com",
+              "phone": "+12498771156",
+              "address": "Barrie",
+              "fraudInfo": {
+                "risk_score": 70,
+                "credit_card": {
+                  "issuer": {
+                    "name": "Bank"
+                  },
+                  "country": "PA"
+                }
+              },
+              "binCountry": "PA",
+              "binBank": "Bank",
+              "ip": "173.32.53.80",
+              "ipCountry": "Canad",
+              "txConcept": "Money Tranfer Order",
+              "txDescription": "Money Tranfer Order",
+              "txDescriptor": "Demo Juridico (NICOL",
+              "customFields": [],
+              "urlString": "https://eo5ybs7ygsmorn7.m.pipedream.net",
+              "amount": 100,
+              "taxAmount": 0,
+              "txType": "AUTH_CAPTURE",
+              "expirationDate": null,
+              "codAuth": "123456",
+              "codOper": "LK-ADZT3OAVCSBV",
+              "authStatus": "00",
+              "messageSys": "Transaction is approved",
+              "authAmount": "100.0",
+              "dateTms": "2026-02-03T21:29:02",
+              "avs": "",
+              "authCvv2": null,
+              "authCurrency": 840,
+              "authDateGmt": "",
+              "authCardCountryCode": 591,
+              "authCardCurrency": null,
+              "status": 1,
+              "displayCardNum": "0006",
+              "cardholderFullName": "Leo More",
+              "cardType": "VISA",
+              "tax": 0.28,
+              "taxRetention": 0,
+              "subTotalCom": 3.5,
+              "totalCom": 3.5,
+              "interCom": 0,
+              "totalCost": 0.5,
+              "totalReserve": 0,
+              "blockedFunds": false,
+              "reserveIsLiberated": true,
+              "reserveLiberatedManually": false,
+              "containsClaim": null,
+              "reserveLiberationDate": "2026-02-03T21:29:04",
+              "reserveLiberationReason": "TX Don't Have Reserve",
+              "containOpenClaim": false,
+              "idRelatedTransaction": 693131,
+              "idUsr": null,
+              "idMerchant": 54977,
+              "idActivity": 18788,
+              "ipSendedCheck": "173.32.53.80",
+              "verificationRequested": null,
+              "verificationDate": null,
+              "inRevision": false,
+              "revisionLevel": null,
+              "revisionOptions": null,
+              "revisionApprovedDate": null,
+              "revisionApprovedIdUsr": null,
+              "payExpired": true
+            }
+          ],
+          "success": true
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: failure
+  
+  request: {
+    url: https://sandbox.paguelofacil.com/PFManagementServices/api/v1/MerchantTransactions?filter=codOper::{{cod_oper}}
+    method: GET
+    mode: none
+    params:query: {
+      filter: codOper::{{cod_oper}}
+    }
+  
+    headers: {
+      Accept: */*
+    }
+  }
+  
+  response: {
+    headers: {
+      date: Wed, 04 Feb 2026 03:06:04 GMT
+      content-type: application/json;charset=utf-8
+      transfer-encoding: chunked
+      connection: keep-alive
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
+      cache-control: no-cache, no-store, max-age=0, must-revalidate
+      pragma: no-cache
+      expires: 0
+      strict-transport-security: max-age=31536000 ; includeSubDomains
+      x-frame-options: DENY, DENY
+      server: pf-server
+      x-pf-header: true
+      access-control-allow-origin: *
+      x-pf-env: SANDBOX
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "headerStatus": {
+            "code": 200,
+            "description": "Success"
+          },
+          "serverTime": "2026-02-03T22:06:04",
+          "message": null,
+          "requestId": "63fc7735-6642-4bd9-8134-d9a9f36abaaa",
+          "data": [
+            {
+              "idTransaction": 693128,
+              "merchantName": "Demo Juridico (NICOLAS GIORDANO)",
+              "email": "lmorelato@gmail.com",
+              "phone": "+14374568978",
+              "address": "Barrie",
+              "fraudInfo": {
+                "risk_score": 70,
+                "credit_card": {
+                  "issuer": {
+                    "name": "Bank"
+                  },
+                  "country": "PA"
+                }
+              },
+              "binCountry": "PA",
+              "binBank": "Bank",
+              "ip": "173.32.53.80",
+              "ipCountry": "Canad",
+              "txConcept": "Money Tranfer Order",
+              "txDescription": "Money Tranfer Order",
+              "txDescriptor": "PGF*PFACIL8336969",
+              "customFields": [],
+              "urlString": "https://eo5ybs7ygsmorn7.m.pipedream.net",
+              "amount": 100,
+              "taxAmount": 0,
+              "txType": "AUTH_CAPTURE",
+              "expirationDate": null,
+              "codAuth": "ERR",
+              "codOper": "LK-KNJ0A2K9BWZC",
+              "authStatus": "SP4",
+              "messageSys": "Issuer is rejecting authentication and requesting that authorization not be attempted",
+              "authAmount": "100.0",
+              "dateTms": "2026-02-02T21:30:00",
+              "avs": "",
+              "authCvv2": null,
+              "authCurrency": 840,
+              "authDateGmt": "",
+              "authCardCountryCode": 591,
+              "authCardCurrency": null,
+              "status": 0,
+              "displayCardNum": "7001",
+              "cardholderFullName": "Leandro Morelato",
+              "cardType": "VISA",
+              "tax": 0,
+              "taxRetention": 0,
+              "subTotalCom": 0,
+              "totalCom": 0,
+              "interCom": 0,
+              "totalCost": 0,
+              "totalReserve": 0,
+              "blockedFunds": false,
+              "reserveIsLiberated": true,
+              "reserveLiberatedManually": false,
+              "containsClaim": null,
+              "reserveLiberationDate": "2026-02-02T21:30:01",
+              "reserveLiberationReason": "TX Don't Have Reserve",
+              "containOpenClaim": false,
+              "idRelatedTransaction": null,
+              "idUsr": null,
+              "idMerchant": 54977,
+              "ipSendedCheck": "173.32.53.80",
+              "verificationRequested": null,
+              "verificationDate": null,
+              "inRevision": false,
+              "revisionLevel": null,
+              "revisionOptions": null,
+              "revisionApprovedDate": null,
+              "revisionApprovedIdUsr": null,
+              "payExpired": false
+            }
+          ],
+          "success": true
+        }
+      '''
+    }
+  }
 }

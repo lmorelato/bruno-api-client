@@ -63,3 +63,71 @@ docs {
     "CCLW": "A78CA31B97BA8DD5EC433628792BDBAD4841C4455E15611E860CDCBF6DB0AB9D3451D2CEDB4BC1A5F9AC2DBF34F87ED914591B4E2CCF914614289951769C08D7"
   }
 }
+
+example {
+  name: example
+  
+  request: {
+    url: https://sandbox.paguelofacil.com/LinkDeamon.cfm
+    method: POST
+    mode: formUrlEncoded
+    headers: {
+      Content-Type: application/x-www-form-urlencoded
+      Accept: */*
+    }
+  
+    body:form-urlencoded: {
+      CCLW: {{web_code}}
+      CMTN: 100.00
+      CDSC: Money Tranfer Order
+      RETURN_URL: {{RETURN_URL}}
+      PARM_1: 123456
+    }
+  }
+  
+  response: {
+    headers: {
+      date: Wed, 04 Feb 2026 02:27:32 GMT
+      content-type: application/json
+      transfer-encoding: chunked
+      connection: keep-alive
+      vary: Origin, Access-Control-Request-Method, Access-Control-Request-Headers
+      x-content-type-options: nosniff
+      x-xss-protection: 1; mode=block
+      cache-control: no-cache, no-store, max-age=0, must-revalidate
+      pragma: no-cache
+      expires: 0
+      strict-transport-security: max-age=31536000 ; includeSubDomains
+      x-frame-options: DENY, DENY
+      server: pf-server
+      x-pf-header: true
+      access-control-allow-origin: *
+      x-pf-env: SANDBOX
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "headerStatus": {
+            "code": 200,
+            "description": "Success"
+          },
+          "serverTime": "2026-02-03T21:27:32",
+          "message": "Success",
+          "requestId": null,
+          "data": {
+            "url": "https://checkout-demo.paguelofacil.com?code=LK-9TTQ6AK7BG5EMAFQ",
+            "code": "LK-9TTQ6AK7BG5EMAFQ"
+          },
+          "success": true
+        }
+      '''
+    }
+  }
+}
